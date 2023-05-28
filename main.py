@@ -46,8 +46,11 @@ for event in longpoll.listen():
             kboard.add_openlink_button('Rarible', 'https://rarible.com/')
             kboard.add_openlink_button('Opensea', 'https://opensea.io/')
             sendmessage(event, f'''📈 Актуальный флор коллекции: {actual_floor} MATIC
+            
 Флор вчера: {yesterday_floor} MATIC
-Флор вчера: {ayesterday_floor} MATIC
+Флор позавчера: {ayesterday_floor} MATIC
+
+
 ''', kboard)
 
 
