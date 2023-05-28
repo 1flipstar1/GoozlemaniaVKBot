@@ -3,17 +3,23 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 import random
 import requests
-
-
-TOKEN = 'vk1.a.GnfYE9d75Wfgtj7M8y45dFhst93O0DvX6i-dmE45z3eWXSyW-T8pR67KFlLYdGX8ZPWvDfv5ipUFa9CRBgq-ptJdd8bmkzaniJhqV6wJqiCwj6ZjVuFp9FMs-Wg1sw3vxjAE-2UmXDOwNva8UusYIfPloa9fRmn6tetw19igE0etIaajZR7dcceBzl2bGytKFi1V3dJjozpTox1fqozx9Q'
-
-
+from myconfig import TOKEN, chain, address
 
 vk_session = vk_api.VkApi(
     token=TOKEN)
 vk = vk_session.get_api()
 
-urlr = 'https://api.rarible.org/v0.1/data/collections/POLYGON:0x24a11e702cd90f034ea44faf1e180c0c654ac5d9/floorPrice?currency=MATIC'
+if chain == 'POLYGON':
+    val = 'MATIC'
+if chain == 'ETHEREUM':
+    val = 'ETH'
+if chain == 'FLOW':
+    val = 'FLOW'
+if chain == 'POLYGON':
+    val = 'MATIC'
+
+urlr = f'https://api.rarible.org/v0.1/data/collections/{chain}:{address}/floorPrice?currency={val}'
+
 
 def sendmessage(event, text, kboard=None):
     if kboard:
@@ -52,13 +58,6 @@ for event in longpoll.listen():
 
 
 ''', kboard)
-
-
-
-
-
-
-
 
         text = event.text
         print(text)
